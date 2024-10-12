@@ -37,12 +37,6 @@ Profile.Settings = {
             { ["Name"] = "Doton ON", ["Tooltip"] = "Doton ON", ["Colour"] = { ["r"] = 0, ["g"] = 1, ["b"] = 0, ["a"] = 1 }, },
         },
     },
-	{
-        ["Setting"] = "DevMode",
-        ["Options"] = {
-            { ["Name"] = "DevMode", ["Tooltip"] = "DevMode", ["Colour"] = { ["r"] = 0, ["g"] = 1, ["b"] = 0, ["a"] = 1 }, },
-        },
-    },
 }
 
 function Profile:SkillTable(Data,Target,ClassTypeID)
