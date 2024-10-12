@@ -37,6 +37,12 @@ Profile.Settings = {
             { ["Name"] = "Doton ON", ["Tooltip"] = "Doton ON", ["Colour"] = { ["r"] = 0, ["g"] = 1, ["b"] = 0, ["a"] = 1 }, },
         },
     },
+	{
+        ["Setting"] = "DevMode",
+        ["Options"] = {
+            { ["Name"] = "DevMode", ["Tooltip"] = "DevMode", ["Colour"] = { ["r"] = 0, ["g"] = 1, ["b"] = 0, ["a"] = 1 }, },
+        },
+    },
 }
 
 function Profile:SkillTable(Data,Target,ClassTypeID)
@@ -68,7 +74,7 @@ function Profile:SkillTable(Data,Target,ClassTypeID)
 	
     local HasDotonBuff = self.TargetBuff2(Player,501,0,"Has",PlayerID)
 	local HasMudraBuff = self.TargetBuff2(Player,{496,497},0,"Has",PlayerID)
-	local HasSuitonBuff = self.TargetBuff2(Player,507,0,"Has",PlayerID)
+	local HasSuitonBuff = self.TargetBuff2(Player,3848,0,"Has",PlayerID)
 	local HasKassatsuBuff = self.TargetBuff2(Player,497,0,"Has",PlayerID)
 	local HasTenChiJinBuff = self.TargetBuff2(Player,1186,0,"Has",PlayerID)
 	local HasMeisuiBuff = self.TargetBuff2(Player,2689,0,"Has",PlayerID)
