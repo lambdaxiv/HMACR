@@ -65,8 +65,8 @@ function Profile:SkillTable(Data,Target,ClassTypeID)
     local AOETimeout = Data.AOETimeout
     local JumpTimeout = Data.JumpTimeout
     local CastTimeout = Data.CastTimeout
-	local KazematoiStacks = Data.GaugeData1[1]
-	local NinkiGaugeAmount = Data.GaugeData1[2]
+    local KazematoiStacks = Data.GaugeData1[1]
+    local NinkiGaugeAmount = Data.GaugeData1[2]
 
     local HasDotonBuff = self.TargetBuff2(Player,501,0,"Has",PlayerID)
 	local HasMudraBuff = self.TargetBuff2(Player,{496,497},0,"Has",PlayerID)
