@@ -315,23 +315,23 @@ function Profile:SkillTable(Data,Target,ClassTypeID)
 		--},
 
 		{ -- Huton
-			["Type"] = 1, ["Name"] = "Huton", ["ID"] = 2269, ["Range"] = 20, ["TargetCast"] = true,
+			["Type"] = 1, ["Name"] = "Huton", ["ID"] = 2269, ["Range"] = 0, ["TargetCast"] = true,
 			["LastCastID"] = { [18805] = true, }, ["OtherCheck"] = self.NinjaLastMudra == 1, ["Buff"] = HasMudraBuff == true,
 		},
 		{ -- Huton - Starter
-			["Type"] = 1, ["Name"] = "Huton - Jin", ["ID"] = 2263, ["Range"] = 20, ["TargetCast"] = true,
+			["Type"] = 1, ["Name"] = "Huton - Jin", ["ID"] = 2263, ["Range"] = 0, ["TargetCast"] = true,
 			["LastCastIDNOT"] = { [2263] = true, [18806] = true, [18805] = true }, ["OtherCheck"] = self.NinjaLastMudra == 1, ["Buff"] = HasMudraBuff == false, ["LastActionTimeout"] = "NinjaMudra", ["LastActionTime"] = 0,
 		},
 		{ -- Huton - 2nd Filler
-			["Type"] = 1, ["Name"] = "Huton - Jin", ["ID"] = 18807, ["Range"] = 20, ["TargetCast"] = true,
+			["Type"] = 1, ["Name"] = "Huton - Jin", ["ID"] = 18807, ["Range"] = 0, ["TargetCast"] = true,
 			["LastCastID"] = { [2261] = true, }, ["OtherCheck"] = self.NinjaLastMudra == 1, ["Buff"] = HasMudraBuff == true, ["LastActionTimeout"] = "NinjaMudra", ["LastActionTime"] = 0,
 		},
 		{ -- Huton - 2nd
-			["Type"] = 1, ["Name"] = "Huton - Chi", ["ID"] = 18806, ["Range"] = 20, ["TargetCast"] = true,
+			["Type"] = 1, ["Name"] = "Huton - Chi", ["ID"] = 18806, ["Range"] = 0, ["TargetCast"] = true,
 			["LastCastID"] = { [2263] = true, }, ["OtherCheck"] = self.NinjaLastMudra == 1, ["Buff"] = HasMudraBuff == true, ["LastActionTimeout"] = "NinjaMudra", ["LastActionTime"] = 0,
 		},
 		{ -- Huton - Finish
-			["Type"] = 1, ["Name"] = "Huton - Ten", ["ID"] = 18805, ["Range"] = 20, ["TargetCast"] = true,
+			["Type"] = 1, ["Name"] = "Huton - Ten", ["ID"] = 18805, ["Range"] = 0, ["TargetCast"] = true,
 			["LastCastID"] = { [18806] = true, [18807] = true, }, ["OtherCheck"] = self.NinjaLastMudra == 1, ["Buff"] = HasMudraBuff == true, ["LastActionTimeout"] = "NinjaMudra", ["LastActionTime"] = 0,
 		},
 
@@ -444,6 +444,14 @@ function Profile:SkillTable(Data,Target,ClassTypeID)
 			["Type"] = 2, ["Name"] = "Hakke Mujinsatsu", ["ID"] = 16488, ["Range"] = 0, ["TargetCast"] = false, ["ComboID"] = { [2254] = true, }, ["AOECount"] = 3, ["SettingValue"] = self.GetSettingsValue(ClassTypeID,"AOE") == 1 and AOETimeout == false, ["Buff"] = HasMudraBuff == false and HasTenChiJinBuff == false,
 			["AOEType"] = { ["Filter"] = "Enemy", ["Name"] = "Circle", ["TargetPoint"] = PlayerPOS, ["AOERange"] = 5, ["MaxDistance"] = 0, ["LineWidth"] = 0, ["Angle"] = 0, }, ["OtherCheck"] = self.NinjaLastMudra == 0 and LastActionWasMudra == false,
 		},
+		{
+			["Type"] = 2, ["Name"] = "Kunai's Bane", ["ID"] = 36958, ["Range"] = 0, ["TargetCast"] = false, ["ComboID"] = { [16488] = true, }, ["AOECount"] = 3, ["SettingValue"] = self.GetSettingsValue(ClassTypeID,"AOE") == 1 and AOETimeout == false, ["Buff"] = HasMudraBuff == false and HasTenChiJinBuff == false,
+			["AOEType"] = { ["Filter"] = "Enemy", ["Name"] = "Circle", ["TargetPoint"] = PlayerPOS, ["AOERange"] = 5, ["MaxDistance"] = 0, ["LineWidth"] = 0, ["Angle"] = 0, }, ["OtherCheck"] = self.NinjaLastMudra == 0 and LastActionWasMudra == false,
+		},
+		{
+			["Type"] = 2, ["Name"] = "Hollow Nozuchi", ["ID"] = 25776, ["Range"] = 0, ["TargetCast"] = false, ["AOECount"] = 3, ["SettingValue"] = self.GetSettingsValue(ClassTypeID,"AOE") == 1 and AOETimeout == false, ["Buff"] = HasMudraBuff == false and HasTenChiJinBuff == false,
+			["AOEType"] = { ["Filter"] = "Enemy", ["Name"] = "Circle", ["TargetPoint"] = PlayerPOS, ["AOERange"] = 5, ["MaxDistance"] = 0, ["LineWidth"] = 0, ["Angle"] = 0, }, ["OtherCheck"] = self.NinjaLastMudra == 0 and LastActionWasMudra == false,
+		},
 
 		-- Single Target Combo
 		{
@@ -462,6 +470,7 @@ function Profile:SkillTable(Data,Target,ClassTypeID)
 
 		{
 			["Type"] = 1, ["Name"] = "Throwing Dagger", ["ID"] = 2247, ["Range"] = 25, ["TargetCast"] = true, ["OtherCheck"] = self.NinjaLastMudra == 0 and LastActionWasMudra == false, ["Buff"] = HasMudraBuff == false and HasTenChiJinBuff == false,
+			
 		},
 		{
 			["Type"] = 1, ["Name"] = "Assassinate", ["ID"] = 2246, ["Range"] = 3, ["TargetCast"] = true, ["OtherCheck"] = self.NinjaLastMudra == 0 and LastActionWasMudra == false, ["Buff"] = HasMudraBuff == false and HasTenChiJinBuff == false,
@@ -473,19 +482,30 @@ function Profile:SkillTable(Data,Target,ClassTypeID)
 			["Type"] = 1, ["Name"] = "Mug", ["ID"] = 2248, ["Range"] = 3, ["TargetCast"] = true, ["OtherCheck"] = self.NinjaLastMudra == 0 and LastActionWasMudra == false, ["Buff"] = HasMudraBuff == false and HasTenChiJinBuff == false,
 		},
 		{
-			["Type"] = 1, ["Name"] = "Mug", ["ID"] = 2248, ["Range"] = 3, ["TargetCast"] = true, ["OtherCheck"] = self.NinjaLastMudra == 0 and LastActionWasMudra == false, ["Buff"] = HasMudraBuff == false and HasTenChiJinBuff == false,
+			["Type"] = 1, ["Name"] = "Dokumori", ["ID"] = 36957, ["Range"] = 3, ["TargetCast"] = true, ["OtherCheck"] = self.NinjaLastMudra == 0 and LastActionWasMudra == false and NinkiGaugeAmount <= 60, ["Buff"] = HasMudraBuff == false and HasTenChiJinBuff == false,
+		},
+		{
+			["Type"] = 1, ["Name"] = "Tenri Jindo", ["ID"] = 36961, ["Range"] = 3, ["TargetCast"] = true, ["OtherCheck"] = self.NinjaLastMudra == 0 and LastActionWasMudra == false, ["Buff"] = HasMudraBuff == false and HasTenChiJinBuff == false,
 		},
 		{
 			["Type"] = 1, ["Name"] = "Bhavacakra", ["ID"] = 7402, ["Range"] = 3, ["TargetCast"] = true, ["SettingValue"] = self.GetSettingsValue(ClassTypeID,"CDs") == 1, ["OtherCheck"] = self.NinjaLastMudra == 0 and LastActionWasMudra == false and PlayerInCombat == true,
 			["Buff"] = HasMudraBuff == false and HasTenChiJinBuff == false and HasMeisuiBuff == true, ["LastActionTimeout"] = "NinjaMudra", ["LastActionTime"] = 500, ["LastActionOnlyTime"] = true,
 		},
-        
+		{
+			["Type"] = 1, ["Name"] = "Zesho Meppo", ["ID"] = 36960, ["Range"] = 3, ["TargetCast"] = true, ["SettingValue"] = self.GetSettingsValue(ClassTypeID,"CDs") == 1, ["OtherCheck"] = self.NinjaLastMudra == 0 and LastActionWasMudra == false and PlayerInCombat == true,
+			["Buff"] = HasMudraBuff == false and HasTenChiJinBuff == false and HasMeisuiBuff == true, ["LastActionTimeout"] = "NinjaMudra", ["LastActionTime"] = 500, ["LastActionOnlyTime"] = true,
+		},
 		{
 			["Type"] = 1, ["Name"] = "Bunshin", ["ID"] = 16493, ["Range"] = 0, ["TargetCast"] = false, ["SettingValue"] = self.GetSettingsValue(ClassTypeID,"CDs") == 1, ["OtherCheck"] = self.NinjaLastMudra == 0 and LastActionWasMudra == false and PlayerInCombat == true,
 			["Buff"] = HasMudraBuff == false and HasTenChiJinBuff == false, ["LastActionTimeout"] = "NinjaMudra", ["LastActionTime"] = 500, ["LastActionOnlyTime"] = true,
 		},
 		{
 			["Type"] = 1, ["Name"] = "Hellfrog Medium", ["ID"] = 7401, ["Range"] = 25, ["TargetCast"] = true, ["SettingValue"] = self.GetSettingsValue(ClassTypeID,"CDs") == 1, ["OtherCheck"] = self.NinjaLastMudra == 0 and LastActionWasMudra == false and PlayerInCombat == true,
+			["Buff"] = HasMudraBuff == false and HasTenChiJinBuff == false, ["LastActionTimeout"] = "NinjaMudra", ["LastActionTime"] = 500, ["LastActionOnlyTime"] = true,
+			["AOECount"] = (PlayerLevel < 68 and 1) or 3, ["AOEType"] = { ["Filter"] = "Enemy", ["Name"] = "Circle", ["TargetPoint"] = TargetPOS, ["AOERange"] = 6, ["MaxDistance"] = 25, ["LineWidth"] = 0, ["Angle"] = 0, },
+		},
+		{
+			["Type"] = 1, ["Name"] = "Deathfrog Medium", ["ID"] = 36959, ["Range"] = 25, ["TargetCast"] = true, ["SettingValue"] = self.GetSettingsValue(ClassTypeID,"CDs") == 1, ["OtherCheck"] = self.NinjaLastMudra == 0 and LastActionWasMudra == false and PlayerInCombat == true,
 			["Buff"] = HasMudraBuff == false and HasTenChiJinBuff == false, ["LastActionTimeout"] = "NinjaMudra", ["LastActionTime"] = 500, ["LastActionOnlyTime"] = true,
 			["AOECount"] = (PlayerLevel < 68 and 1) or 3, ["AOEType"] = { ["Filter"] = "Enemy", ["Name"] = "Circle", ["TargetPoint"] = TargetPOS, ["AOERange"] = 6, ["MaxDistance"] = 25, ["LineWidth"] = 0, ["Angle"] = 0, },
 		},
