@@ -244,10 +244,10 @@ function Profile:SkillTable(Data,Target,ClassTypeID)
 	local SkillList = {
 		{
 			["Type"] = 2, ["Name"] = "Kassatsu", ["ID"] = 2264, ["Range"] = 0, ["TargetCast"] = false, --["SettingValue"] = self.GetSettingsValue(ClassTypeID,"AOE") == 1 and AOETimeout == false,
-			["LastCastIDMust"] = { [2258] = true, },
+			["LastCastIDMust"] = { [2258] = true, [36958] = true },
 		},
 		{
-			["Type"] = 2, ["Name"] = "Ten Chi Jin", ["ID"] = 7403, ["Range"] = 0, ["TargetCast"] = false, ["OtherCheck"] = LastActionWasMudra == false and HasKassatsuBuff == false and MudraCurrentCharges == 0 and TrickAttack.isoncd == true and Kassatsu.isoncd == true and TrickAttack.cd < 30 and Kassatsu.cd < 30, ["LastActionTimeout"] = "NinjaMudra", ["LastActionTime"] = 0,
+			["Type"] = 2, ["Name"] = "Ten Chi Jin", ["ID"] = 7403, ["Range"] = 0, ["TargetCast"] = false, ["OtherCheck"] = LastActionWasMudra == false and HasKassatsuBuff == false and PlayerInCombat == true and MudraCurrentCharges == 0 and TrickAttack.isoncd == true and Kassatsu.isoncd == true and TrickAttack.cd < 30 and Kassatsu.cd < 30, ["LastActionTimeout"] = "NinjaMudra", ["LastActionTime"] = 0,
 		},
 		{
 			["Type"] = 2, ["Name"] = "Meisui", ["ID"] = 16489, ["Range"] = 0, ["TargetCast"] = false, ["OtherCheck"] = HasSuitonBuff == true and TrickAttack.isoncd == true and Kassatsu.isoncd == true and TrickAttack.cd < 30 and Kassatsu.cd < 30, ["LastActionTimeout"] = "NinjaMudra", ["LastActionTime"] = 0,
@@ -280,6 +280,10 @@ function Profile:SkillTable(Data,Target,ClassTypeID)
  		-- Mudras
 		{
 			["Type"] = 1, ["Name"] = "Trick Attack", ["ID"] = 2258, ["Range"] = 3, ["TargetCast"] = true, ["SettingValue"] = self.GetSettingsValue(ClassTypeID,"CDs") == 1,
+			["Buff"] = HasSuitonBuff, ["OtherCheck"] = PlayerInCombat == true,
+		},
+		{
+			["Type"] = 1, ["Name"] = "Kunai's Bane", ["ID"] = 36958, ["Range"] = 3, ["TargetCast"] = true, ["SettingValue"] = self.GetSettingsValue(ClassTypeID,"CDs") == 1,
 			["Buff"] = HasSuitonBuff, ["OtherCheck"] = PlayerInCombat == true,
 		},
 		-- Ten Action 18873
@@ -428,7 +432,9 @@ function Profile:SkillTable(Data,Target,ClassTypeID)
 		},
 
 		-- AOE Combo
-
+		{
+			["Type"] = 1, ["Name"] = "Phantom Kamaitachi", ["ID"] = 25774, ["Range"] = 20, ["TargetCast"] = true, ["OtherCheck"] = self.NinjaLastMudra == 0 and LastActionWasMudra == false, ["Buff"] = HasMudraBuff == false and HasTenChiJinBuff == false,
+		},
 		{
 			["Type"] = 2, ["Name"] = "Death Blossom", ["ID"] = 2254, ["Range"] = 0, ["TargetCast"] = false, ["AOECount"] = 3, ["SettingValue"] = self.GetSettingsValue(ClassTypeID,"AOE") == 1 and AOETimeout == false, ["Buff"] = HasMudraBuff == false and HasTenChiJinBuff == false,
 			["AOEType"] = { ["Filter"] = "Enemy", ["Name"] = "Circle", ["TargetPoint"] = PlayerPOS, ["AOERange"] = 5, ["MaxDistance"] = 0, ["LineWidth"] = 0, ["Angle"] = 0, }, ["OtherCheck"] = self.NinjaLastMudra == 0 and LastActionWasMudra == false,
@@ -438,15 +444,8 @@ function Profile:SkillTable(Data,Target,ClassTypeID)
 			["Type"] = 2, ["Name"] = "Hakke Mujinsatsu", ["ID"] = 16488, ["Range"] = 0, ["TargetCast"] = false, ["ComboID"] = { [2254] = true, }, ["AOECount"] = 3, ["SettingValue"] = self.GetSettingsValue(ClassTypeID,"AOE") == 1 and AOETimeout == false, ["Buff"] = HasMudraBuff == false and HasTenChiJinBuff == false,
 			["AOEType"] = { ["Filter"] = "Enemy", ["Name"] = "Circle", ["TargetPoint"] = PlayerPOS, ["AOERange"] = 5, ["MaxDistance"] = 0, ["LineWidth"] = 0, ["Angle"] = 0, }, ["OtherCheck"] = self.NinjaLastMudra == 0 and LastActionWasMudra == false,
 		},
-		{
-			["Type"] = 2, ["Name"] = "Kunai's Bane", ["ID"] = 36958, ["Range"] = 0, ["TargetCast"] = false, ["ComboID"] = { [16488] = true, }, ["AOECount"] = 3, ["SettingValue"] = self.GetSettingsValue(ClassTypeID,"AOE") == 1 and AOETimeout == false, ["Buff"] = HasMudraBuff == false and HasTenChiJinBuff == false,
-			["AOEType"] = { ["Filter"] = "Enemy", ["Name"] = "Circle", ["TargetPoint"] = PlayerPOS, ["AOERange"] = 5, ["MaxDistance"] = 0, ["LineWidth"] = 0, ["Angle"] = 0, }, ["OtherCheck"] = self.NinjaLastMudra == 0 and LastActionWasMudra == false,
-		},
 
 		-- Single Target Combo
-		{
-			["Type"] = 1, ["Name"] = "Phantom Kamaitachi", ["ID"] = 25774, ["Range"] = 20, ["TargetCast"] = true, ["OtherCheck"] = self.NinjaLastMudra == 0 and LastActionWasMudra == false, ["Buff"] = HasMudraBuff == false and HasTenChiJinBuff == false,
-		},
 		{
 			["Type"] = 1, ["Name"] = "Spinning Edge", ["ID"] = 2240, ["Range"] = 25, ["TargetCast"] = true, ["OtherCheck"] = self.NinjaLastMudra == 0 and LastActionWasMudra == false, ["Buff"] = HasMudraBuff == false and HasTenChiJinBuff == false,
 			["ComboIDNOT"] = { [2240] = PlayerLevel >= 4, [2242] = PlayerLevel >= 26, }, -- ["ComboID"] = { [0] = true, [2240] = PlayerLevel < 4, [2242] = PlayerLevel < 26, [2255] = true, [3563] = true, },
